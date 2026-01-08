@@ -59,3 +59,27 @@ input{
     color:#d0d0d0;
     font-size: 14px;
 }
+.userToggle{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+    background-color: #303030;
+    border-radius: 10px;
+}
+.userToggle p{
+    margin: 5px 10px;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.userToggle i{
+    font-size: small;
+}
+.userToggle p:hover{
+    background-color: #339cff;
+    cursor: pointer;
+}
+.userToggle.on{
+    display: flex;
+}
