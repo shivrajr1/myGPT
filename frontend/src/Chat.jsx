@@ -44,7 +44,12 @@ export default function Chat() {
         {
           (thread?._id==reply?.id) ? 
           <ReactMarkdown rehypePlugins={[rehypeHighlight]} key={'lastElement'}>{wordEffect}</ReactMarkdown> : 
-          <ReactMarkdown rehypePlugins={[rehypeHighlight]} key={'lastElement'}>{thread?.message[thread.message.length - 1].content}</ReactMarkdown>
+          <>
+          {thread?.message?.length > 0 && (
+            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+              {thread.message[thread.message.length - 1].content}
+            </ReactMarkdown>
+          )}</>
         }
       </div>
     </>
