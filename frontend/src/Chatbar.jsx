@@ -13,7 +13,7 @@ export default function Chatbar() {
     const {
         input, setInput, 
         reply, setReply, 
-        thread, setThread, 
+        thread, setThread, setTotalThread,
         loading, setLoading}=useContext(context)
     const [userToggle, setUserToggle]=useState(false)
         
@@ -28,9 +28,9 @@ export default function Chatbar() {
                     <i className="fa-solid fa-user"></i></span>
             </div>
             <div className={`userToggle ${userToggle ? 'on':''}`}>
-                <p><i class="fa-solid fa-gear"></i> Settings</p>
-                <p><i class="fa-regular fa-circle-up"></i> Upgrade plan</p>
-                <p><i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</p>
+                <p><i className="fa-solid fa-gear"></i> Settings</p>
+                <p><i className="fa-regular fa-circle-up"></i> Upgrade plan</p>
+                <p><i className="fa-solid fa-arrow-right-from-bracket"></i> Log out</p>
             </div>
             <Chat />
             {loading &&<Loader type="box-rectangular"/>}
@@ -41,9 +41,9 @@ export default function Chatbar() {
                     placeholder='Ask anything' 
                     value={input}
                     onChange={(e)=>setInput(e.target.value)}
-                    onKeyDown={(e)=>e.key=='Enter'? submit({input, reply, setInput, setReply, setThread, thread, loading, setLoading}) :''}
+                    onKeyDown={(e)=>e.key=='Enter'? submit({input, reply, setInput, setReply, setThread, thread, loading, setLoading, setTotalThread}) :''}
                     />
-                    <span className='icon' onClick={()=>submit({input, reply, setInput, setReply, setThread, thread, loading, setLoading})}>
+                    <span className='icon' onClick={()=>submit({input, reply, setInput, setReply, setThread, thread, loading, setLoading, setTotalThread})}>
                         <i className="fa-solid fa-paper-plane"></i>
                     </span>
                 </div>

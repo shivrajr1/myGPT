@@ -35,13 +35,18 @@ export const addThread=async(req,res)=>{
             } catch (error) {
                 return res.status(400).send('id is not valid')
             }
-        }else{
-            thread=new Thread({title:message})
+        }
+        if(!thread){
+            thread=new Thread({title:message,message:[]})
         }
         
         thread.message.push({role:'user',content:message})
-        let aiResponse=await huggingAi(thread.message)
-        let aiMessage=aiResponse.choices[0].message.content
+        const messages = thread.message.map(msg => ({
+            role: msg.role,
+            content: msg.content
+        }))
+        let aiResponse=await huggingAi(messages)
+        let aiMessage=aiResponse?.choices[0]?.message?.content
         thread.message.push({role:'assistant',content:aiMessage})
 
         await thread.save()

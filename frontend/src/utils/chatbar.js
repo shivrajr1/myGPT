@@ -1,9 +1,10 @@
+import { func } from '../utils/sidbar'
 
 export const submit=async({
     input, setInput, 
     setReply, 
     thread, setThread,  
-    loading, setLoading
+    loading, setLoading, setTotalThread
     })=>{
 
         if(loading)return
@@ -22,6 +23,7 @@ export const submit=async({
         setThread((prev) => {
             return {
                 ...prev,
+                title: prev.title || input,
                 _id: prev._id || data.id,
                 message: [
                 ...(prev?.message || []),
@@ -30,6 +32,7 @@ export const submit=async({
                 ]
             };
         });
+        if(!thread?._id)func({setTotalThread})
         setReply(data)
 
         } catch (error) {
